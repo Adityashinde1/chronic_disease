@@ -1,0 +1,11 @@
+numpy
+Flask
+sklearn
+ipykernel
+pandas
+PyYAML
+seaborn
+dill
+category_encoders
+matplotlib
+-e .
