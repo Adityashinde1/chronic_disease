@@ -1,7 +1,7 @@
 import os
 import sys
 
-from kidneyDisease.exception import RestuarantException
+from kidneyDisease.exception import kidneyDiseaseException
 from kidneyDisease.util.util import load_object
 
 import pandas as pd
@@ -24,7 +24,7 @@ class RestuarantData:
             self.price_range = price_range
 
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def get_restuarant_input_data_frame(self):
 
@@ -32,7 +32,7 @@ class RestuarantData:
             restuarant_input_dict = self.get_restuarant_data_as_dict()
             return pd.DataFrame(restuarant_input_dict)
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def get_restuarant_data_as_dict(self):
         try:
@@ -44,7 +44,7 @@ class RestuarantData:
                 "Price_range": [self.price_range]}
             return input_data
         except Exception as e:
-            raise RestuarantException(e, sys)
+            raise kidneyDiseaseException(e, sys)
 
 
 class RestuarantPredictor:
@@ -53,7 +53,7 @@ class RestuarantPredictor:
         try:
             self.model_dir = model_dir
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def get_latest_model_path(self):
         try:
@@ -63,7 +63,7 @@ class RestuarantPredictor:
             latest_model_path = os.path.join(latest_model_dir, file_name)
             return latest_model_path
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def predict(self, X):
         try:
@@ -72,4 +72,4 @@ class RestuarantPredictor:
             median_house_value = model.predict(X)
             return median_house_value
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e

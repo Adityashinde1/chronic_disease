@@ -1,5 +1,5 @@
 from kidneyDisease.logger import logging
-from kidneyDisease.exception import RestuarantException
+from kidneyDisease.exception import kidneyDiseaseException
 from kidneyDisease.entity.artifact_entity import ModelPusherArtifact, ModelEvaluationArtifact 
 from kidneyDisease.entity.config_entity import ModelPusherConfig
 import os, sys
@@ -17,7 +17,7 @@ class ModelPusher:
             self.model_evaluation_artifact = model_evaluation_artifact
 
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def export_model(self) -> ModelPusherArtifact:
         try:
@@ -39,13 +39,13 @@ class ModelPusher:
             logging.info(f"Model pusher artifact: [{model_pusher_artifact}]")
             return model_pusher_artifact
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def initiate_model_pusher(self) -> ModelPusherArtifact:
         try:
             return self.export_model()
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def __del__(self):
         logging.info(f"{'>>' * 20}Model Pusher log completed.{'<<' * 20} ")

@@ -1,5 +1,5 @@
 from cgi import test
-from kidneyDisease.exception import RestuarantException
+from kidneyDisease.exception import kidneyDiseaseException
 from kidneyDisease.logger import logging
 from kidneyDisease.entity.config_entity import DataTransformationConfig 
 from kidneyDisease.entity.artifact_entity import DataIngestionArtifact,\
@@ -28,7 +28,7 @@ class DataTransformation:
             self.data_validation_artifact = data_validation_artifact
 
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
     
 
@@ -55,7 +55,7 @@ class DataTransformation:
             return preprocessing
 
         except Exception as e:
-            raise RestuarantException(e,sys) from e   
+            raise kidneyDiseaseException(e,sys) from e   
 
 
     def initiate_data_transformation(self)->DataTransformationArtifact:
@@ -130,7 +130,7 @@ class DataTransformation:
             logging.info(f"Data transformationa artifact: {data_transformation_artifact}")
             return data_transformation_artifact
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
     def __del__(self):
         logging.info(f"{'>>'*30}Data Transformation log completed.{'<<'*30} \n\n")

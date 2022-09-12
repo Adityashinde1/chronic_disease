@@ -1,5 +1,5 @@
 
-from kidneyDisease.exception import RestuarantException
+from kidneyDisease.exception import kidneyDiseaseException
 import sys
 from kidneyDisease.logger import logging
 from typing import List
@@ -47,7 +47,7 @@ class ModelTrainer:
             self.model_trainer_config = model_trainer_config
             self.data_transformation_artifact = data_transformation_artifact
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def initiate_model_trainer(self)->ModelTrainerArtifact:
         try:
@@ -110,7 +110,7 @@ class ModelTrainer:
             logging.info(f"Model Trainer Artifact: {model_trainer_artifact}")
             return model_trainer_artifact
         except Exception as e:
-            raise RestuarantException(e, sys) from e
+            raise kidneyDiseaseException(e, sys) from e
 
     def __del__(self):
         logging.info(f"{'>>' * 30}Model trainer log completed.{'<<' * 30} ")

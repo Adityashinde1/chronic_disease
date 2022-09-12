@@ -1,6 +1,6 @@
 from kidneyDisease.entity.config_entity import DataIngestionConfig
 import sys,os
-from kidneyDisease.exception import RestuarantException
+from kidneyDisease.exception import kidneyDiseaseException
 from kidneyDisease.logger import logging
 from kidneyDisease.entity.artifact_entity import DataIngestionArtifact
 import pandas as pd
@@ -15,7 +15,7 @@ class DataIngestion:
             self.data_ingestion_config = data_ingestion_config
 
         except Exception as e:
-            raise RestuarantException(e,sys)
+            raise kidneyDiseaseException(e,sys)
     
 
     def download_data(self,) -> str:
@@ -38,7 +38,7 @@ class DataIngestion:
             return csv_file_path
 
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
     
     def split_data_as_train_test(self) -> DataIngestionArtifact:
@@ -84,7 +84,7 @@ class DataIngestion:
             return data_ingestion_artifact
 
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
 
     def initiate_data_ingestion(self)-> DataIngestionArtifact:
@@ -92,7 +92,7 @@ class DataIngestion:
             csv_file_path =  self.download_data()
             return self.split_data_as_train_test()
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
     
 
 

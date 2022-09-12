@@ -1,5 +1,5 @@
 from kidneyDisease.logger import logging
-from kidneyDisease.exception import RestuarantException
+from kidneyDisease.exception import kidneyDiseaseException
 from kidneyDisease.entity.config_entity import DataValidationConfig
 from kidneyDisease.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact
 from kidneyDisease.util.util import read_yaml_file
@@ -21,7 +21,7 @@ class DataValidation:
             self.data_validation_config = data_validation_config
             self.data_ingestion_artifact = data_ingestion_artifact
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
 
     def get_train_and_test_df(self):
@@ -30,7 +30,7 @@ class DataValidation:
             test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
             return train_df,test_df
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
 
     def is_train_test_file_exists(self)->bool:
@@ -58,7 +58,7 @@ class DataValidation:
 
             return is_available
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
     
     def validate_dataset_schema(self)->bool:
@@ -130,7 +130,7 @@ class DataValidation:
 
             return validation_status
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
     def get_and_save_data_drift_report(self):
         try:
@@ -150,7 +150,7 @@ class DataValidation:
                 json.dump(report, report_file, indent=6)
             return report
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
     def save_data_drift_report_page(self):
         try:
@@ -164,7 +164,7 @@ class DataValidation:
 
             dashboard.save(report_page_file_path)
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
     def is_data_drift_found(self)->bool:
         try:
@@ -172,7 +172,7 @@ class DataValidation:
             self.save_data_drift_report_page()
             return True
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
     def initiate_data_validation(self)->DataValidationArtifact :
         try:
@@ -190,7 +190,7 @@ class DataValidation:
             logging.info(f"Data validation artifact: {data_validation_artifact}")
             return data_validation_artifact
         except Exception as e:
-            raise RestuarantException(e,sys) from e
+            raise kidneyDiseaseException(e,sys) from e
 
 
     def __del__(self):

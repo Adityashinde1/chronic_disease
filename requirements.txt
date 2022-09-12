@@ -5,6 +5,7 @@ ipykernel
 pandas
 PyYAML
 seaborn
+evidently
 dill
 category_encoders
 matplotlib

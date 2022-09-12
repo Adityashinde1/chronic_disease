@@ -5,7 +5,7 @@ import pip
 from kidneyDisease.util.util import read_yaml_file, write_yaml_file
 from matplotlib.style import context
 from kidneyDisease.logger import logging
-from kidneyDisease.exception import RestuarantException
+from kidneyDisease.exception import kidneyDiseaseException
 import os, sys
 import json
 from kidneyDisease.config.configuration import Configuartion
