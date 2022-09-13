@@ -1,16 +1,13 @@
 training_pipeline_config:
-  pipeline_name: restuarant ratings prediction
+  pipeline_name: Chronic Kidney disease classification
   artifact_dir: artifact
 
 data_ingestion_config:
-  dataset_download_url: https://raw.githubusercontent.com/Adityashinde1/restuarant_ratings/main/data/ZomatoData/ZomatoData.csv
+  dataset_download_url: https://github.com/Adityashinde1/chronic_disease/blob/main/data/chronic_kidney_disease.arff
   csv_download_dir: raw_data
   ingested_dir: ingested_data
   ingested_train_dir: train
   ingested_test_dir: test 
-
-
-
 
 data_validation_config:
   schema_dir: config

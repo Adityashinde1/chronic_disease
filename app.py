@@ -11,7 +11,7 @@ import json
 from kidneyDisease.config.configuration import Configuartion
 from kidneyDisease.constant import CONFIG_DIR, get_current_time_stamp
 from kidneyDisease.pipeline.pipeline import Pipeline
-from kidneyDisease.entity.restuarant_predictor import RestuarantPredictor, RestuarantData
+from kidneyDisease.entity.kideney_disease_predictor import RestuarantPredictor, RestuarantData
 from flask import send_file, abort, render_template
 
 

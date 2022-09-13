@@ -6,41 +6,74 @@ grid_search:
     verbose: 2
 model_selection:
   module_0:
-    class: DecisionTreeRegressor
-    module: sklearn.tree
-    params:
-      min_samples_leaf: 3
-      max_features: 'sqrt'
-      n_estimators: 100
-      max_depth: 2
-    search_param_grid: 
-      min_samples_leaf: 
-      - 3
-  module_1:
-    class: RandomForestRegressor
+    class: RandomForestClassifier
     module: sklearn.ensemble
     params:
-      min_samples_leaf: 2
-      max_features: 'sqrt'
       n_estimators: 100
+      max_depth: 5
+      min_samples_leaf: 2
+      min_samples_split: 2
+      criterion: 'gini'
+      max_features: 'sqrt'
+    search_param_grid: 
+      n_estimators: 
+      - 100
+      - 200
+      - 300
+      - 400
+      - 500
+      max_depth:
+      - 5
+      - 10
+      - 15
+      - 20
+      - 30
+      - 40
+      min_samples_leaf:
+      - 2
+      - 4
+      - 6
+      - 8
+      - 10
+      min_samples_split:
+      - 2
+      - 4
+      - 6
+      - 8
+      - 10
+      criterion:
+      - 'gini'
+      - 'entropy'
+      max_features:
+      - 'sqrt'
+      - 'log2'
+  module_1:
+    class: DecisionTreeClassifier
+    module: sklearn.tree
+    params:
+      min_samples_leaf: 2
+      min_samples_split: 2
+      max_features: 'sqrt'
       max_depth: 2
+      criterion: 'gini'
     search_param_grid:
       min_samples_leaf:
       - 2
       - 8
       - 15
       - 10
+      min_samples_split:
+      - 2
+      - 4
+      - 6
       max_features:
-      - 5
-      - 7
       - "sqrt"
       - "log2"
-      n_estimators:
-      - 100
-      - 200
-      - 500
-      - 1000
       max_depth:
       - 5
       - 8
       - 10
+      criterion:
+      - 'gini'
+      - 'entropy'
+      - 'log_loss'

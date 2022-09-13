@@ -1,4 +1,5 @@
 from cgi import test
+from signal import alarm
 from kidneyDisease.exception import kidneyDiseaseException
 from kidneyDisease.logger import logging
 from kidneyDisease.entity.config_entity import DataTransformationConfig 
@@ -6,9 +7,10 @@ from kidneyDisease.entity.artifact_entity import DataIngestionArtifact,\
 DataValidationArtifact,DataTransformationArtifact
 import sys,os
 import numpy as np
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, OrdinalEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
+from sklearn.impute import KNNImputer
 import pandas as pd
 from kidneyDisease.constant import *
 from kidneyDisease.util.util import read_yaml_file,save_object,save_numpy_array_data,load_data
@@ -38,11 +40,13 @@ class DataTransformation:
 
             schema_df = read_yaml_file(file_path=schema_file_path)
 
-            numerical_columns = schema_df[TRANSFORMERS_COLUMNS_NUM_KEY]
-            categorical_columns = schema_df[TRANSFORMERS_COLUMNS_CAT_KEY]
+            numerical_columns = schema_df[NUMERICAL_COLUMN_KEY]
+            categorical_columns = schema_df[CATEGORICAL_COLUMN_KEY]
+            all_columns = numerical_columns + categorical_columns
 
-            cat_pipeline = Pipeline(steps=[('binaryencoding', BinaryEncoder())])
+            cat_pipeline = Pipeline(steps=[('ordinalencoding', OrdinalEncoder())])
             num_pipeline = Pipeline(steps=[('scaler', StandardScaler())])
+            imputer_pipeline = Pipeline(steps=[('knnimputer', KNNImputer(n_neighbors=3))])
             
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
@@ -51,6 +55,7 @@ class DataTransformation:
             preprocessing = ColumnTransformer([
                 ('num_pipeline', num_pipeline, numerical_columns),
                 ('cat_pipeline', cat_pipeline, categorical_columns),
+                ('imputer_pipeline', imputer_pipeline, all_columns)
             ], remainder='passthrough')
             return preprocessing
 
@@ -81,14 +86,13 @@ class DataTransformation:
             schema_df = read_yaml_file(file_path=schema_file_path)
 
             target_column_name = schema_df[TARGET_COLUMN_KEY]
-            selected_columns = schema_df[SELECTED_COLUMN_KEY]
 
 
             logging.info(f"Splitting input and target feature from training and testing dataframe.")
-            input_feature_train_df = train_df[selected_columns]
+            input_feature_train_df = train_df.drop(columns=[target_column_name],axis=1)
             target_feature_train_df = train_df[target_column_name]
 
-            input_feature_test_df = test_df[selected_columns]
+            input_feature_test_df = test_df.drop(columns=[target_column_name],axis=1)
             target_feature_test_df = test_df[target_column_name]
             
 

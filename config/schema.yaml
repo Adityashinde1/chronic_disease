@@ -1,65 +1,59 @@
 columns:
-  Restaurant_ID: int
-  Restaurant_Name: category
-  Country_Code: int
-  City: category
-  Address: category
-  Locality: category
-  Locality_Verbose: category
-  Longitude: float
-  Latitude: float
-  Cuisines: category
-  Currency: category
-  Has_Table_booking: category
-  Has_Online_delivery: category
-  Is_delivering_now: category
-  Switch_to_order_menu: category
-  Price_range: int
-  Votes: int
-  Average_Cost_for_two: int
-  Rating: float
+  age: float
+  bp: float
+  sg: float
+  al: float
+  su: float
+  rbc: category
+  pc: category
+  pcc: category
+  ba: category
+  bgr: float
+  bu: float
+  sc: float
+  sod: float
+  pot: float
+  hemo: float
+  pcv: float
+  wbcc: float
+  rbcc: float
+  htn: category
+  dm: category
+  cad: category
+  appet: category
+  pe: category
+  ane: category
 
 numerical_columns:
-  - Restaurant_ID
-  - Country_Code
-  - Longitude
-  - Latitude
-  - Price_range
-  - Votes
-  - Average_Cost_for_two
-  - Rating
-  - Currency
-  - Has_Table_booking
-  - Has_Online_delivery
-  - Is_delivering_now
-  - Switch_to_order_menu
+  - age: float
+  - bp: float
+  - sg: float
+  - al: float
+  - su: float
+  - bgr: float
+  - bu: float
+  - sc: float
+  - sod: float
+  - pot: float
+  - hemo: float
+  - pcv: float
+  - wbcc: float
+  - rbcc: float
 
 categorical_columns:
-  - Restaurant_Name
-  - City
-  - Address
-  - Locality
-  - Locality_Verbose
-  - Cuisines
+  - rbc: category
+  - pc: category
+  - pcc: category
+  - ba: category
+  - htn: category
+  - dm: category
+  - cad: category
+  - appet: category
+  - pe: category
+  - ane: category
 
 
-selected_columns:
-  - Votes 
-  - Average_Cost_for_two
-  - Has_Table_booking
-  - Has_Online_delivery
-  - Price_range
-
-transformer_columns_cat:
-  - Has_Table_booking
-  - Has_Online_delivery
-
-transformer_columns_num:
-  - Votes
-  - Average_Cost_for_two
-
-
-target_column: Rating
+target_column: class
 
 
 
