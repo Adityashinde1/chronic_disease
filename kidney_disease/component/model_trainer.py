@@ -6,7 +6,7 @@ from kidney_disease.entity.artifact_entity import DataTransformationArtifact, Mo
 from kidney_disease.entity.config_entity import ModelTrainerConfig
 from kidney_disease.util.util import load_numpy_array_data,save_object,load_object
 from kidney_disease.entity.model_factory import MetricInfoArtifact, ModelFactory,GridSearchedBestModel
-from kidney_disease.entity.model_factory import evaluate_regression_model
+from kidney_disease.entity.model_factory import evaluate_classification_model
 
 
 
@@ -82,7 +82,7 @@ class ModelTrainer:
             
             model_list = [model.best_model for model in grid_searched_best_model_list ]
             logging.info(f"Evaluation all trained model on training and testing dataset both")
-            metric_info:MetricInfoArtifact = evaluate_regression_model(model_list=model_list,X_train=x_train,y_train=y_train,X_test=x_test,y_test=y_test,base_accuracy=base_accuracy)
+            metric_info:MetricInfoArtifact = evaluate_classification_model(model_list=model_list,X_train=x_train,y_train=y_train,X_test=x_test,y_test=y_test,base_accuracy=base_accuracy)
 
             logging.info(f"Best found model on both training and testing dataset.")
             
@@ -98,8 +98,8 @@ class ModelTrainer:
 
             model_trainer_artifact=  ModelTrainerArtifact(is_trained=True,message="Model Trained successfully",
             trained_model_file_path=trained_model_file_path,
-            train_rmse=metric_info.train_rmse,
-            test_rmse=metric_info.test_rmse,
+            train_rmse=metric_info.train_f1,
+            test_rmse=metric_info.test_f1,
             train_accuracy=metric_info.train_accuracy,
             test_accuracy=metric_info.test_accuracy,
             model_accuracy=metric_info.model_accuracy

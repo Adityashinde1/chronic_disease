@@ -2,6 +2,7 @@ numpy
 Flask
 sklearn
 ipykernel
+six
 pandas
 gunicorn
 PyYAML

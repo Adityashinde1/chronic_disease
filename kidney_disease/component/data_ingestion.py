@@ -1,3 +1,4 @@
+from urllib import request
 from kidney_disease.entity.config_entity import DataIngestionConfig
 import sys,os
 from kidney_disease.exception import kidneyDiseaseException
@@ -33,6 +34,7 @@ class DataIngestion:
             csv_file_path = os.path.join(csv_download_dir, kidneyDisease_file_name)
 
             logging.info(f"Downloading file from :[{download_url}] into :[{csv_file_path}]")
+            
             urllib.request.urlretrieve(download_url, csv_file_path)
             logging.info(f"File :[{csv_file_path}] has been downloaded successfully.")
             return csv_file_path
@@ -51,14 +53,8 @@ class DataIngestion:
 
 
             logging.info(f"Reading csv file: [{kidneyDisease_file_path}]")
-            kidneyDisease_dataframe = pd.read_csv(kidneyDisease_file_path, sep=',', 
-                                                header=None, index_col=False, skiprows= 29, 
-                                                na_values=['?'], skipinitialspace=True, usecols=range(0, 25))
 
-            kidneyDisease_dataframe['class'].mask(kidneyDisease_dataframe['class'] == 'no', 'notckd', inplace=True)
-            kidneyDisease_dataframe['appet'].mask(kidneyDisease_dataframe['appet'] == 'no','poor', inplace=True)
-            kidneyDisease_dataframe['pe'].mask(kidneyDisease_dataframe['pe'] == 'good','yes', inplace=True)
-
+            kidneyDisease_dataframe = pd.read_csv(kidneyDisease_file_path)
 
             logging.info(f"Splitting data into train and test")
 

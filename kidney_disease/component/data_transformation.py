@@ -1,5 +1,4 @@
 from cgi import test
-from signal import alarm
 from kidney_disease.exception import kidneyDiseaseException
 from kidney_disease.logger import logging
 from kidney_disease.entity.config_entity import DataTransformationConfig 
