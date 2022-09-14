@@ -23,7 +23,7 @@ class DataIngestion:
         try:
             #extraction remote url to download dataset
             download_url = self.data_ingestion_config.dataset_download_url
-
+            
             #folder location to download file
             csv_download_dir = self.data_ingestion_config.csv_download_dir
             

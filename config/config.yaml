@@ -1,9 +1,9 @@
 training_pipeline_config:
-  pipeline_name: Chronic Kidney disease classification
+  pipeline_name: Chronic_Kidney_disease_classification
   artifact_dir: artifact
 
 data_ingestion_config:
-  dataset_download_url: https://github.com/Adityashinde1/chronic_disease/blob/main/data/chronic_kidney_disease.arff
+  dataset_download_url: https://github.com/Adityashinde1/chronic_disease/blob/main/data/kidney_disease.csv
   csv_download_dir: raw_data
   ingested_dir: ingested_data
   ingested_train_dir: train
