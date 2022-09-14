@@ -1,10 +1,10 @@
 import yaml
-from kidneyDisease.exception import kidneyDiseaseException
+from kidney_disease.exception import kidneyDiseaseException
 import os,sys
 import numpy as np
 import dill
 import pandas as pd
-from kidneyDisease.constant import *
+from kidney_disease.constant import *
 
 
 def write_yaml_file(file_path:str,data:dict=None):

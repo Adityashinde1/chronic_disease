@@ -1,8 +1,8 @@
-from kidneyDisease.logger import logging
-from kidneyDisease.exception import kidneyDiseaseException
-from kidneyDisease.entity.config_entity import DataValidationConfig
-from kidneyDisease.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact
-from kidneyDisease.util.util import read_yaml_file
+from kidney_disease.logger import logging
+from kidney_disease.exception import kidneyDiseaseException
+from kidney_disease.entity.config_entity import DataValidationConfig
+from kidney_disease.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact
+from kidney_disease.util.util import read_yaml_file
 import os,sys
 import pandas  as pd
 from evidently.model_profile import Profile

@@ -1,7 +1,7 @@
-from kidneyDisease.logger import logging
-from kidneyDisease.exception import kidneyDiseaseException
-from kidneyDisease.entity.artifact_entity import ModelPusherArtifact, ModelEvaluationArtifact 
-from kidneyDisease.entity.config_entity import ModelPusherConfig
+from kidney_disease.logger import logging
+from kidney_disease.exception import kidneyDiseaseException
+from kidney_disease.entity.artifact_entity import ModelPusherArtifact, ModelEvaluationArtifact 
+from kidney_disease.entity.config_entity import ModelPusherConfig
 import os, sys
 import shutil
 

@@ -1,23 +1,20 @@
 from flask import Flask, request
-import sys
-
-import pip
-from kidneyDisease.util.util import read_yaml_file, write_yaml_file
+from kidney_disease.util.util import read_yaml_file, write_yaml_file
 from matplotlib.style import context
-from kidneyDisease.logger import logging
-from kidneyDisease.exception import kidneyDiseaseException
-import os, sys
+from kidney_disease.logger import logging
+from kidney_disease.exception import kidneyDiseaseException
+import os
 import json
-from kidneyDisease.config.configuration import Configuartion
-from kidneyDisease.constant import CONFIG_DIR, get_current_time_stamp
-from kidneyDisease.pipeline.pipeline import Pipeline
-from kidneyDisease.entity.kidney_disease_predictor import RestuarantPredictor, RestuarantData
+from kidney_disease.config.configuration import Configuartion
+from kidney_disease.constant import CONFIG_DIR, get_current_time_stamp
+from kidney_disease.pipeline.pipeline import Pipeline
+from kidney_disease.entity.kidney_disease_predictor import KidneyDiseasePredictor, KidneyDiseaseData
 from flask import send_file, abort, render_template
 
 
 ROOT_DIR = os.getcwd()
 LOG_FOLDER_NAME = "logs"
-PIPELINE_FOLDER_NAME = "restuarant"
+PIPELINE_FOLDER_NAME = "kidney_disease"
 SAVED_MODELS_DIR_NAME = "saved_models"
 MODEL_CONFIG_FILE_PATH = os.path.join(ROOT_DIR, CONFIG_DIR, "model.yaml")
 LOG_DIR = os.path.join(ROOT_DIR, LOG_FOLDER_NAME)
@@ -25,18 +22,18 @@ PIPELINE_DIR = os.path.join(ROOT_DIR, PIPELINE_FOLDER_NAME)
 MODEL_DIR = os.path.join(ROOT_DIR, SAVED_MODELS_DIR_NAME)
 
 
-from kidneyDisease.logger import get_log_dataframe
+from kidney_disease.logger import get_log_dataframe
 
-RESTUARANT_DATA_KEY = "restuarant_data"
-RESTUARANT_RATING_VALUE_KEY = "restuarant_rating_value"
+KIDNEY_DISEASE_DATA_KEY = "kidneyDisease_data"
+KIDNEY_DISEASE_RATING_VALUE_KEY = "kidneyDisease_rating_value"
 
 app = Flask(__name__)
 
 
-@app.route('/artifact', defaults={'req_path': 'restuarant'})
+@app.route('/artifact', defaults={'req_path': 'kidney_disease'})
 @app.route('/artifact/<path:req_path>')
 def render_artifact_dir(req_path):
-    os.makedirs("resturant", exist_ok=True)
+    os.makedirs("kidney_disease", exist_ok=True)
     # Joining the base and the requested path
     print(f"req_path: {req_path}")
     abs_path = os.path.join(req_path)
@@ -103,29 +100,42 @@ def train():
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
     context = {
-        RESTUARANT_DATA_KEY: None,
-        RESTUARANT_RATING_VALUE_KEY: None
+        KIDNEY_DISEASE_DATA_KEY: None,
+        KIDNEY_DISEASE_RATING_VALUE_KEY: None
     }
 
     if request.method == 'POST':
-        votes = float(request.form['votes'])
-        average_cost_for_two = float(request.form['average_cost_for_two'])
-        has_table_booking = float(request.form['has_table_booking'])
-        has_online_delivery = float(request.form['has_online_delivery'])
-        price_range = float(request.form['price_range'])
+        age = float(request.form['age'])
+        bp = float(request.form['bp'])
+        sg = float(request.form['sg'])
+        al = float(request.form['al'])
+        su = float(request.form['su'])
+        rbc = float(request.form['rbc'])
+        pc = float(request.form['pc'])
+        pcc = float(request.form['pcc'])
+        ba = float(request.form['ba'])
+        bgr = float(request.form['bgr'])
+        sod = float(request.form['sod'])
+        pot = float(request.form['pot'])
+        hemo = float(request.form['hemo'])
+        pcv = float(request.form['pcv'])
+        wbcc = float(request.form['wbcc'])
+        rbcc = float(request.form['rbcc'])
+        htn = float(request.form['htn'])
+        dm = float(request.form['dm'])
+        cad = float(request.form['cad'])
+        appet = float(request.form['appet'])
+        pe = float(request.form['pe'])
+        ane = float(request.form['ane'])
         
-        restuarant_data = RestuarantData(votes=votes,
-                                   average_cost_for_two=average_cost_for_two,
-                                   has_online_delivery=has_online_delivery,
-                                   has_table_booking=has_table_booking,
-                                   price_range=price_range
-                                   )
-        restuarant_df = restuarant_data.get_restuarant_input_data_frame()
-        restuarant_predictor = RestuarantPredictor(model_dir=MODEL_DIR)
-        median_rating_value = restuarant_predictor.predict(X=restuarant_df)
+        kidney_data = KidneyDiseaseData(age=age, bp=bp, sg=sg, al=al, su=su, rbc=rbc, pc=pc, pcc=pcc, ba=ba, bgr=bgr, sod=sod, pot=pot, 
+        hemo=hemo, pcv=pcv, wbcc=wbcc, rbcc=rbcc, htn=htn, dm=dm, cad=cad, appet=appet, pe=pe, ane=ane)
+        kidney_df = kidney_data.get_kidney_disease_input_data_frame()
+        kidney_predictor = KidneyDiseasePredictor(model_dir=MODEL_DIR)
+        median_rating_value = kidney_predictor.predict(X=kidney_df)
         context = {
-            RESTUARANT_DATA_KEY: restuarant_data.get_restuarant_data_as_dict(),
-            RESTUARANT_RATING_VALUE_KEY: median_rating_value,
+            KIDNEY_DISEASE_DATA_KEY: kidney_data.get_kidney_disease_data_as_dict(),
+            KIDNEY_DISEASE_RATING_VALUE_KEY: median_rating_value,
         }
         return render_template('predict.html', context=context)
     return render_template("predict.html", context=context)

@@ -1,8 +1,8 @@
-from kidneyDisease.entity.config_entity import DataIngestionConfig
+from kidney_disease.entity.config_entity import DataIngestionConfig
 import sys,os
-from kidneyDisease.exception import kidneyDiseaseException
-from kidneyDisease.logger import logging
-from kidneyDisease.entity.artifact_entity import DataIngestionArtifact
+from kidney_disease.exception import kidneyDiseaseException
+from kidney_disease.logger import logging
+from kidney_disease.entity.artifact_entity import DataIngestionArtifact
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from six.moves import urllib

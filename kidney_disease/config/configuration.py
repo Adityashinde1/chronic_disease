@@ -1,11 +1,11 @@
 
-from kidneyDisease.entity.config_entity import DataIngestionConfig, DataTransformationConfig,DataValidationConfig,   \
+from kidney_disease.entity.config_entity import DataIngestionConfig, DataTransformationConfig,DataValidationConfig,   \
 ModelTrainerConfig,ModelEvaluationConfig,ModelPusherConfig,TrainingPipelineConfig
-from kidneyDisease.util.util import read_yaml_file
-from kidneyDisease.logger import logging
+from kidney_disease.util.util import read_yaml_file
+from kidney_disease.logger import logging
 import sys,os
-from kidneyDisease.constant import *
-from kidneyDisease.exception import kidneyDiseaseException
+from kidney_disease.constant import *
+from kidney_disease.exception import kidneyDiseaseException
 
 
 class Configuartion:

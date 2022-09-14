@@ -1,27 +1,27 @@
 from collections import namedtuple
 from datetime import datetime
 import uuid
-from kidneyDisease.config.configuration import Configuartion
-from kidneyDisease.logger import logging, get_log_file_name
-from kidneyDisease.exception import kidneyDiseaseException
+from kidney_disease.config.configuration import Configuartion
+from kidney_disease.logger import logging, get_log_file_name
+from kidney_disease.exception import kidneyDiseaseException
 from threading import Thread
 from typing import List
 
 from multiprocessing import Process
-from kidneyDisease.entity.artifact_entity import ModelPusherArtifact, DataIngestionArtifact, ModelEvaluationArtifact
-from kidneyDisease.entity.artifact_entity import DataValidationArtifact, DataTransformationArtifact, ModelTrainerArtifact
-from kidneyDisease.entity.config_entity import DataIngestionConfig, ModelEvaluationConfig
-from kidneyDisease.component.data_ingestion import DataIngestion
-from kidneyDisease.component.data_validation import DataValidation
-from kidneyDisease.component.data_transformation import DataTransformation
-from kidneyDisease.component.model_trainer import ModelTrainer
-from kidneyDisease.component.model_evaluation import ModelEvaluation
-from kidneyDisease.component.model_pusher import ModelPusher
+from kidney_disease.entity.artifact_entity import ModelPusherArtifact, DataIngestionArtifact, ModelEvaluationArtifact
+from kidney_disease.entity.artifact_entity import DataValidationArtifact, DataTransformationArtifact, ModelTrainerArtifact
+from kidney_disease.entity.config_entity import DataIngestionConfig, ModelEvaluationConfig
+from kidney_disease.component.data_ingestion import DataIngestion
+from kidney_disease.component.data_validation import DataValidation
+from kidney_disease.component.data_transformation import DataTransformation
+from kidney_disease.component.model_trainer import ModelTrainer
+from kidney_disease.component.model_evaluation import ModelEvaluation
+from kidney_disease.component.model_pusher import ModelPusher
 import os, sys
 from collections import namedtuple
 from datetime import datetime
 import pandas as pd
-from kidneyDisease.constant import EXPERIMENT_DIR_NAME, EXPERIMENT_FILE_NAME
+from kidney_disease.constant import EXPERIMENT_DIR_NAME, EXPERIMENT_FILE_NAME
 
 Experiment = namedtuple("Experiment", ["experiment_id", "initialization_timestamp", "artifact_time_stamp",
                                        "running_status", "start_time", "stop_time", "execution_time", "message",

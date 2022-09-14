@@ -3,6 +3,7 @@ Flask
 sklearn
 ipykernel
 pandas
+gunicorn
 PyYAML
 seaborn
 evidently

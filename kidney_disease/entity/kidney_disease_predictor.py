@@ -1,11 +1,7 @@
-from lib2to3.pgen2.token import RBRACE
 import os
-from socket import SO_DEBUG
 import sys
-
-from kidneyDisease.exception import kidneyDiseaseException
-from kidneyDisease.util.util import load_object
-
+from kidney_disease.exception import kidneyDiseaseException
+from kidney_disease.util.util import load_object
 import pandas as pd
 
 
@@ -53,18 +49,16 @@ class KidneyDiseaseData:
 
     def get_kidney_disease_data_as_dict(self):
         try:
-            input_data = {
-                "Votes": [self.votes],
-                "Average_Cost_for_two": [self.average_cost_for_two],
-                "Has_Table_booking": [self.has_table_booking],
-                "Has_Online_delivery": [self.has_online_delivery],
-                "Price_range": [self.price_range]}
+            input_data = {"age": [self.age], "bp": [self.bp], "sg": [self.sg], "al": [self.al], "su": [self.su],"rbc": [self.rbc],
+            "pc": [self.pc],"pcc": [self.pcc],"ba": [self.ba],"bgr": [self.bgr],"bu": [self.bu],"sc": [self.sc], "sod": [self.sod],
+            "pot": [self.pot],"hemo": [self.hemo],"pcv": [self.pcv],"wbcc": [self.wbcc],"htn": [self.htn],"dm": [self.dm],"cad": [self.cad],
+            "appet": [self.appet],"pe": [self.pe],"ane": [self.ane]}
             return input_data
         except Exception as e:
             raise kidneyDiseaseException(e, sys)
 
 
-class RestuarantPredictor:
+class KidneyDiseasePredictor:
 
     def __init__(self, model_dir: str):
         try:
@@ -86,7 +80,7 @@ class RestuarantPredictor:
         try:
             model_path = self.get_latest_model_path()
             model = load_object(file_path=model_path)
-            median_house_value = model.predict(X)
-            return median_house_value
+            median_kidneyDisease_value = model.predict(X)
+            return median_kidneyDisease_value
         except Exception as e:
             raise kidneyDiseaseException(e, sys) from e

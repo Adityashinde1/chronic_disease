@@ -1,9 +1,9 @@
 from cgi import test
 from signal import alarm
-from kidneyDisease.exception import kidneyDiseaseException
-from kidneyDisease.logger import logging
-from kidneyDisease.entity.config_entity import DataTransformationConfig 
-from kidneyDisease.entity.artifact_entity import DataIngestionArtifact,\
+from kidney_disease.exception import kidneyDiseaseException
+from kidney_disease.logger import logging
+from kidney_disease.entity.config_entity import DataTransformationConfig 
+from kidney_disease.entity.artifact_entity import DataIngestionArtifact,\
 DataValidationArtifact,DataTransformationArtifact
 import sys,os
 import numpy as np
@@ -12,9 +12,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import KNNImputer
 import pandas as pd
-from kidneyDisease.constant import *
-from kidneyDisease.util.util import read_yaml_file,save_object,save_numpy_array_data,load_data
-from category_encoders.binary import BinaryEncoder
+from kidney_disease.constant import *
+from kidney_disease.util.util import read_yaml_file,save_object,save_numpy_array_data,load_data
 
 
 class DataTransformation:

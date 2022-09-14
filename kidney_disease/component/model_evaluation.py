@@ -1,13 +1,13 @@
-from kidneyDisease.logger import logging
-from kidneyDisease.exception import kidneyDiseaseException
-from kidneyDisease.entity.config_entity import ModelEvaluationConfig
-from kidneyDisease.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,ModelTrainerArtifact,ModelEvaluationArtifact
-from kidneyDisease.constant import *
+from kidney_disease.logger import logging
+from kidney_disease.exception import kidneyDiseaseException
+from kidney_disease.entity.config_entity import ModelEvaluationConfig
+from kidney_disease.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,ModelTrainerArtifact,ModelEvaluationArtifact
+from kidney_disease.constant import *
 import numpy as np
 import os
 import sys
-from kidneyDisease.util.util import write_yaml_file, read_yaml_file, load_object,load_data
-from kidneyDisease.entity.model_factory import evaluate_regression_model
+from kidney_disease.util.util import write_yaml_file, read_yaml_file, load_object,load_data
+from kidney_disease.entity.model_factory import evaluate_classification_model
 
 
 class ModelEvaluation:
@@ -122,7 +122,7 @@ class ModelEvaluation:
 
             model_list = [model, trained_model_object]
 
-            metric_info_artifact = evaluate_regression_model(model_list=model_list,
+            metric_info_artifact = evaluate_classification_model(model_list=model_list,
                                                                X_train=train_dataframe,
                                                                y_train=train_target_arr,
                                                                X_test=test_dataframe,

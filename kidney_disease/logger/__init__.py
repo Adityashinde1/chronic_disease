@@ -2,7 +2,7 @@ import logging
 from datetime import datetime
 import os
 import pandas as pd
-from kidneyDisease.constant import get_current_time_stamp 
+from kidney_disease.constant import get_current_time_stamp 
 LOG_DIR="logs"
 
 def get_log_file_name():

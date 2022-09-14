@@ -1,17 +1,16 @@
-
-from kidneyDisease.exception import kidneyDiseaseException
+from kidney_disease.exception import kidneyDiseaseException
 import sys
-from kidneyDisease.logger import logging
+from kidney_disease.logger import logging
 from typing import List
-from kidneyDisease.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
-from kidneyDisease.entity.config_entity import ModelTrainerConfig
-from kidneyDisease.util.util import load_numpy_array_data,save_object,load_object
-from kidneyDisease.entity.model_factory import MetricInfoArtifact, ModelFactory,GridSearchedBestModel
-from kidneyDisease.entity.model_factory import evaluate_regression_model
+from kidney_disease.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
+from kidney_disease.entity.config_entity import ModelTrainerConfig
+from kidney_disease.util.util import load_numpy_array_data,save_object,load_object
+from kidney_disease.entity.model_factory import MetricInfoArtifact, ModelFactory,GridSearchedBestModel
+from kidney_disease.entity.model_factory import evaluate_regression_model
 
 
 
-class KidneyEstimatorModel:
+class KidneyDiseaseModel:
     def __init__(self, preprocessing_object, trained_model_object):
         """
         TrainedModel constructor
@@ -92,9 +91,9 @@ class ModelTrainer:
 
 
             trained_model_file_path=self.model_trainer_config.trained_model_file_path
-            housing_model = KidneyEstimatorModel(preprocessing_object=preprocessing_obj,trained_model_object=model_object)
+            kidneyDisease_model = KidneyDiseaseModel(preprocessing_object=preprocessing_obj,trained_model_object=model_object)
             logging.info(f"Saving model at path: {trained_model_file_path}")
-            save_object(file_path=trained_model_file_path,obj=housing_model)
+            save_object(file_path=trained_model_file_path,obj=kidneyDisease_model)
 
 
             model_trainer_artifact=  ModelTrainerArtifact(is_trained=True,message="Model Trained successfully",
