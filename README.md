@@ -49,7 +49,7 @@ To run main file
 python app.py
 ```
 First you have to click on Train Chronic Kidney classifier
-![alt text]()
+![alt text](https://github.com/Adityashinde1/chronic_disease/blob/main/image/chrome_UHSM1FhbmQ.png)
 
 
 ## 🧑‍💻 Tech used
