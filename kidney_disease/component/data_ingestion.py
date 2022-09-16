@@ -7,6 +7,7 @@ from kidney_disease.entity.artifact_entity import DataIngestionArtifact
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from six.moves import urllib
+import numpy as np
 
 class DataIngestion:
 
@@ -23,7 +24,7 @@ class DataIngestion:
         try:
             #extraction remote url to download dataset
             download_url = self.data_ingestion_config.dataset_download_url
-            
+
             #folder location to download file
             csv_download_dir = self.data_ingestion_config.csv_download_dir
             
@@ -56,10 +57,30 @@ class DataIngestion:
 
             kidneyDisease_dataframe = pd.read_csv(kidneyDisease_file_path)
 
+            # Replacing "?" to NaN value
+            kidneyDisease_dataframe['pcv'] = kidneyDisease_dataframe['pcv'].replace("?", np.NaN)
+            kidneyDisease_dataframe['wc'] = kidneyDisease_dataframe['wc'].replace("?", np.NaN)
+            kidneyDisease_dataframe['rc'] = kidneyDisease_dataframe['rc'].replace("?", np.NaN)
+
+            # Dropping id column
+            kidneyDisease_dataframe = kidneyDisease_dataframe.drop('id',axis=1)
+
+            # filling missing values for column - "rc", 'pcv', 'wc'
+            rc_column_value = 5.1
+            pcv_column_value = 27
+            wc_column_value = 8500
+
+            kidneyDisease_dataframe['rc'] = kidneyDisease_dataframe['rc'].fillna(value=rc_column_value)
+            kidneyDisease_dataframe['pcv'] = kidneyDisease_dataframe['pcv'].fillna(value=pcv_column_value)
+            kidneyDisease_dataframe['wc'] = kidneyDisease_dataframe['wc'].fillna(value=wc_column_value)
+
+            # Chnaging the datatype of numerical columns
+            kidneyDisease_dataframe = kidneyDisease_dataframe.astype({"rc": float, "pcv": int, "wc": int})
+
             logging.info(f"Splitting data into train and test")
 
             # Train test split
-            train_set, test_set = train_test_split(kidneyDisease_dataframe, test_size=0.2, random_state=1)
+            train_set, test_set = train_test_split(kidneyDisease_dataframe, test_size=0.2)
 
             train_file_path = os.path.join(self.data_ingestion_config.ingested_train_dir,
                                             file_name)

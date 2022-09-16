@@ -18,6 +18,8 @@ PARAM_KEY = 'params'
 MODEL_SELECTION_KEY = 'model_selection'
 SEARCH_PARAM_GRID_KEY = "search_param_grid"
 
+POS_LABEL = 'ckd'
+
 InitializedModelDetail = namedtuple("InitializedModelDetail",
                                     ["model_serial_number", "model", "param_grid_search", "model_name"])
 
@@ -78,8 +80,8 @@ def evaluate_classification_model(model_list: list, X_train:np.ndarray, y_train:
             test_acc = accuracy_score(y_test, y_test_pred)
             
             #Calculating f1 score on training and testing dataset
-            train_f1 = f1_score(y_train, y_train_pred)
-            test_f1 = f1_score(y_test, y_test_pred)
+            train_f1 = f1_score(y_train, y_train_pred, pos_label=POS_LABEL)
+            test_f1 = f1_score(y_test, y_test_pred, pos_label=POS_LABEL)
 
             # Calculating harmonic mean of train_accuracy and test_accuracy
             model_accuracy = (2 * (train_acc * test_acc)) / (train_acc + test_acc)

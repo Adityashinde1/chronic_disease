@@ -19,34 +19,19 @@ model_selection:
       n_estimators: 
       - 100
       - 200
-      - 300
-      - 400
-      - 500
       max_depth:
       - 5
       - 10
       - 15
-      - 20
-      - 30
-      - 40
       min_samples_leaf:
       - 2
       - 4
-      - 6
-      - 8
-      - 10
       min_samples_split:
       - 2
       - 4
-      - 6
-      - 8
-      - 10
       criterion:
       - 'gini'
       - 'entropy'
-      max_features:
-      - 'sqrt'
-      - 'log2'
   module_1:
     class: DecisionTreeClassifier
     module: sklearn.tree
@@ -60,20 +45,15 @@ model_selection:
       min_samples_leaf:
       - 2
       - 8
-      - 15
-      - 10
       min_samples_split:
       - 2
       - 4
-      - 6
       max_features:
       - "sqrt"
       - "log2"
       max_depth:
       - 5
       - 8
-      - 10
       criterion:
       - 'gini'
       - 'entropy'
-      - 'log_loss'

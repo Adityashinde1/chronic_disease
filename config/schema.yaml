@@ -14,43 +14,45 @@ columns:
   sod: float
   pot: float
   hemo: float
-  pcv: float
-  wbcc: float
-  rbcc: float
+  pcv: category
+  wc: category
+  rc: category
   htn: category
   dm: category
   cad: category
   appet: category
   pe: category
   ane: category
+  class: category
 
 numerical_columns:
-  - age: float
-  - bp: float
-  - sg: float
-  - al: float
-  - su: float
-  - bgr: float
-  - bu: float
-  - sc: float
-  - sod: float
-  - pot: float
-  - hemo: float
-  - pcv: float
-  - wbcc: float
-  - rbcc: float
+  - age
+  - bp
+  - sg
+  - al
+  - su
+  - bgr
+  - bu
+  - sc
+  - sod
+  - pot
+  - hemo
+  - rc
+  - pcv 
+  - wc 
+   
 
 categorical_columns:
-  - rbc: category
-  - pc: category
-  - pcc: category
-  - ba: category
-  - htn: category
-  - dm: category
-  - cad: category
-  - appet: category
-  - pe: category
-  - ane: category
+  - rbc
+  - pc
+  - pcc
+  - ba
+  - htn
+  - dm
+  - cad
+  - appet
+  - pe
+  - ane
 
 
 target_column: class

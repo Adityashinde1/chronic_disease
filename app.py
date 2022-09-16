@@ -115,12 +115,14 @@ def predict():
         pcc = float(request.form['pcc'])
         ba = float(request.form['ba'])
         bgr = float(request.form['bgr'])
+        bu = float(request.form['bu'])
+        sc = float(request.form['sc'])
         sod = float(request.form['sod'])
         pot = float(request.form['pot'])
         hemo = float(request.form['hemo'])
         pcv = float(request.form['pcv'])
-        wbcc = float(request.form['wbcc'])
-        rbcc = float(request.form['rbcc'])
+        wc = float(request.form['wc'])
+        rc = float(request.form['rc'])
         htn = float(request.form['htn'])
         dm = float(request.form['dm'])
         cad = float(request.form['cad'])
@@ -128,8 +130,9 @@ def predict():
         pe = float(request.form['pe'])
         ane = float(request.form['ane'])
         
-        kidney_data = KidneyDiseaseData(age=age, bp=bp, sg=sg, al=al, su=su, rbc=rbc, pc=pc, pcc=pcc, ba=ba, bgr=bgr, sod=sod, pot=pot, 
-        hemo=hemo, pcv=pcv, wbcc=wbcc, rbcc=rbcc, htn=htn, dm=dm, cad=cad, appet=appet, pe=pe, ane=ane)
+        kidney_data = KidneyDiseaseData(age=age, bp=bp, sg=sg, al=al, su=su, rbc=rbc, pc=pc, pcc=pcc, ba=ba, bgr=bgr, bu=bu, sc=sc, 
+        sod=sod, pot=pot, hemo=hemo, pcv=pcv, wc=wc, rc=rc, htn=htn, dm=dm, cad=cad, appet=appet, pe=pe, ane=ane)
+        
         kidney_df = kidney_data.get_kidney_disease_input_data_frame()
         kidney_predictor = KidneyDiseasePredictor(model_dir=MODEL_DIR)
         median_rating_value = kidney_predictor.predict(X=kidney_df)

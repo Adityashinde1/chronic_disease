@@ -3,7 +3,7 @@ training_pipeline_config:
   artifact_dir: artifact
 
 data_ingestion_config:
-  dataset_download_url: https://github.com/Adityashinde1/chronic_disease/blob/main/data/kidney_disease.csv
+  dataset_download_url: https://raw.githubusercontent.com/Adityashinde1/chronic_disease/main/data/kidney_disease.csv
   csv_download_dir: raw_data
   ingested_dir: ingested_data
   ingested_train_dir: train
@@ -12,8 +12,6 @@ data_ingestion_config:
 data_validation_config:
   schema_dir: config
   schema_file_name: schema.yaml
-  report_file_name: report.json
-  report_page_file_name: report.html
 
 data_transformation_config:
   transformed_dir: transformed_data

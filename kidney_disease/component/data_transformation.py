@@ -1,4 +1,5 @@
 from cgi import test
+from re import S
 from kidney_disease.exception import kidneyDiseaseException
 from kidney_disease.logger import logging
 from kidney_disease.entity.config_entity import DataTransformationConfig 
@@ -9,10 +10,11 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler, OrdinalEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from sklearn.impute import KNNImputer
+from sklearn.impute import SimpleImputer, KNNImputer
 import pandas as pd
 from kidney_disease.constant import *
 from kidney_disease.util.util import read_yaml_file,save_object,save_numpy_array_data,load_data
+from category_encoders.binary import BinaryEncoder
 
 
 class DataTransformation:
@@ -40,11 +42,9 @@ class DataTransformation:
 
             numerical_columns = schema_df[NUMERICAL_COLUMN_KEY]
             categorical_columns = schema_df[CATEGORICAL_COLUMN_KEY]
-            all_columns = numerical_columns + categorical_columns
 
-            cat_pipeline = Pipeline(steps=[('ordinalencoding', OrdinalEncoder())])
-            num_pipeline = Pipeline(steps=[('scaler', StandardScaler())])
-            imputer_pipeline = Pipeline(steps=[('knnimputer', KNNImputer(n_neighbors=3))])
+            cat_pipeline = Pipeline(steps=[('binaryencoding', BinaryEncoder()), ("impute", SimpleImputer())])
+            num_pipeline = Pipeline(steps=[('knn_imputer', KNNImputer(n_neighbors=3)),('scaler', StandardScaler())])
             
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
@@ -52,9 +52,8 @@ class DataTransformation:
 
             preprocessing = ColumnTransformer([
                 ('num_pipeline', num_pipeline, numerical_columns),
-                ('cat_pipeline', cat_pipeline, categorical_columns),
-                ('imputer_pipeline', imputer_pipeline, all_columns)
-            ], remainder='passthrough')
+                ('cat_pipeline', cat_pipeline, categorical_columns)
+                ])
             return preprocessing
 
         except Exception as e:
