@@ -135,10 +135,15 @@ def predict():
         
         kidney_df = kidney_data.get_kidney_disease_input_data_frame()
         kidney_predictor = KidneyDiseasePredictor(model_dir=MODEL_DIR)
-        median_rating_value = kidney_predictor.predict(X=kidney_df)
+        result = kidney_predictor.predict(X=kidney_df)
+
+        if result == 'ckd':
+            result = 'Chronic Kidney Disease'
+        else:
+            result =  'Not a Chronic Kidey Disease'
         context = {
             KIDNEY_DISEASE_DATA_KEY: kidney_data.get_kidney_disease_data_as_dict(),
-            KIDNEY_DISEASE_RATING_VALUE_KEY: median_rating_value,
+            KIDNEY_DISEASE_RATING_VALUE_KEY: result,
         }
         return render_template('predict.html', context=context)
     return render_template("predict.html", context=context)
@@ -220,4 +225,4 @@ def render_log_dir(req_path):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

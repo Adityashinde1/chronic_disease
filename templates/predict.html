@@ -3,7 +3,7 @@
 {% block head %}
 
 
-<title>Zomato Restuarant Ratings Prediction</title>
+<title>Chronic Kidney Disease Classifier</title>
 {% endblock %}
 
 {% block content %}
@@ -13,39 +13,154 @@
 
 
         <form action="/predict" method="post">
-            <legend>Restuarant rating Form</legend>
+            <legend>Chronic Kidney Classifier Form</legend>
             <div class="mb-3">
-                <label class="form-label">Votes</label>
-                <input class="form-control" type="text" name="votes" placeholder="Enter a value of votes"
+                <label class="form-label">Enter Age</label>
+                <input class="form-control" type="text" name="age" placeholder="Enter Age"
                     required />
             </div>
             <div class="mb-3">
-                <label class="form-label">Average Cost For Two</label>
-                <input class="form-control" type="text" name="average_cost_for_two" placeholder="Enter a value of Average cost for two people"
-                    required />
-
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Has Table Booking</label>
-                <input class="form-control" type="text" name="has_table_booking"
-                    placeholder="Enter either 0 or 1, 0 = No, 1 = Yes" />
-
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Has Online Delivery</label>
-                <input class="form-control" type="text" name="has_online_delivery" placeholder="Enter either 0 or 1, 0 = No, 1 = Yes"
+                <label class="form-label">Enter Blood Pressure</label>
+                <input class="form-control" type="text" name="bp" placeholder="Enter Blood pressure in mm/HG"
                     required />
 
             </div>
             <div class="mb-3">
-                <label class="form-label">Price Range</label>
-                <input class="form-control" type="text" name="price_range"
-                    placeholder="Enter a value for price range" required />
+                <label class="form-label">Enter Specific gravity value</label>
+                <input class="form-control" type="text" name="sg"
+                    placeholder="Enter Gravity value. eg-(1.005,1.010,1.015,1.020,1.025)" 
+                    required />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Albumin value</label>
+                <input class="form-control" type="text" name="al" placeholder="Enter Albumin value eg-(0,1,2,3,4,5)"
+                    required />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Enter Sugar value</label>
+                <input class="form-control" type="text" name="su"
+                    placeholder="Enter Sugar value eg-(0,1,2,3,4,5)" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Red blood cell value</label>
+                <input class="form-control" type="text" name="rbc"
+                    placeholder="Enter a value for Red Blood cell. eg- Normal: 1, Abnormal: 0" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Pus cell value</label>
+                <input class="form-control" type="text" name="pc"
+                    placeholder="Enter a value for Pus cell. eg- Normal: 1, Abnormal: 0" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Pus cell clumps value</label>
+                <input class="form-control" type="text" name="pcc"
+                    placeholder="Enter a value for Pus cell clumps. eg- Present: 0, Not present: 1" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Bacteria value</label>
+                <input class="form-control" type="text" name="ba"
+                    placeholder="Enter a value for Bacteria. eg- Present: 0, Not present: 1" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Blood glucose random value</label>
+                <input class="form-control" type="text" name="bgr"
+                    placeholder="Enter a Blood glucose random value in mgs/dl" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Blood Urea value </label>
+                <input class="form-control" type="text" name="bu"
+                    placeholder="Enter a Blood Blood Urea value in mgs/dl" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Serum Creatinine value</label>
+                <input class="form-control" type="text" name="sc"
+                    placeholder="Enter a Serum Creatinine value in mgs/dl" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Sodium value</label>
+                <input class="form-control" type="text" name="sod"
+                    placeholder="Enter a Sodium value in mEq/L" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Potassium value</label>
+                <input class="form-control" type="text" name="pot"
+                    placeholder="Enter a Potassium value in mEq/L" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Hemoglobin value</label>
+                <input class="form-control" type="text" name="hemo"
+                    placeholder="Enter a Hemoglobin value in gms" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Packed cell value</label>
+                <input class="form-control" type="text" name="pcv"
+                    placeholder="Enter a Packed cell value" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter White Blood cell count value</label>
+                <input class="form-control" type="text" name="wc"
+                    placeholder="Enter a White Blood cell count value" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Red blood cell count value</label>
+                <input class="form-control" type="text" name="rc"
+                    placeholder="Enter Red blood cell count value in millions/cmm" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Hypertension</label>
+                <input class="form-control" type="text" name="htn"
+                    placeholder="Enter a Hypertension value. eg- Yes: 1, No: 0" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Diabetes mellitus</label>
+                <input class="form-control" type="text" name="dm"
+                    placeholder="Enter a Diabetes mellitus value. eg- Yes: 1, No: 0" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Coronary Artery Disease</label>
+                <input class="form-control" type="text" name="cad"
+                    placeholder="Enter a Coronary Artery Disease value. eg- Yes: 1, No: 0" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Appetite</label>
+                <input class="form-control" type="text" name="appet"
+                    placeholder="Enter an Appetite value. eg- Good: 1, Poor: 0" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Pedel Edema count</label>
+                <input class="form-control" type="text" name="pe"
+                    placeholder="Enter Pedel Edema value. eg- Yes: 0, No: 1" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Anemia</label>
+                <input class="form-control" type="text" name="ane"
+                    placeholder="Enter Anemia value. eg- Yes: 0, No: 1" required />
             </div>
            
             <div class="mb-3">
 
-                <input class="btn btn-primary" type="submit" value="Predict Restuarant Rating Value" required />
+                <input class="btn btn-primary" type="submit" value="Predict Chronic Kidney Disease Classifier" required />
             </div>
 
         </form>
@@ -54,18 +169,18 @@
     <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
         <div class="card">
             <div class="card-header">
-              Zomato Restuarant Ratings
+              Chronic Kidney Classifier
             </div>
             <div class="card-body">
-        {% if context['restuarant_data'] is not none %}
+        {% if context['kidneyDisease_data'] is not none %}
         <table class="table table-striped">
-            <caption>Zomato Restuarant Rating Prediction </caption>
+            <caption>Chronic Kidney Disease Classifier </caption>
             <tr>
                 <th>Input Feature</th>
                 <th>Feature Value</th>
 
             </tr>
-            {% for column,value in context['restuarant_data'].items() %}
+            {% for column,value in context['kidneyDisease_data'].items() %}
 
 
 
@@ -77,9 +192,9 @@
             {% endfor %}
             <tr>
 
-                <td>restuarant_rating_value </td>
+                <td>Result -></td>
                 <td>
-                    {{ context['restuarant_rating_value'] }}
+                    {{ context['kidneyDisease_rating_value'] }}
                 </td>
             </tr>
         </table>
@@ -87,7 +202,7 @@
         {% else %}
        
               <h5 class="card-title">Submit Form</h5>
-              <p class="card-text">Kindly provide necessary information to estimate Restuarant Ratings</p>
+              <p class="card-text">Kindly provide necessary information to Classify kidney chronic disease</p>
             
          
         {% endif %}

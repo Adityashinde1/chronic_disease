@@ -8,7 +8,7 @@ import pandas as pd
 class KidneyDiseaseData:
 
     def __init__(self,age: float, bp: float, sg: float, al: float, su: float, rbc: int, pc: int, pcc: int, ba: int, bgr: float, bu: float,
-                 sc: float, sod: float, pot: float, hemo: float, pcv: float, wbcc: float, rbcc: float, htn: int, dm: int, cad: int, appet: int,
+                 sc: float, sod: float, pot: float, hemo: float, pcv: float, wc: float, rc: float, htn: int, dm: int, cad: int, appet: int,
                  pe: int, ane: int):
         try:
             self.age = age
@@ -27,8 +27,8 @@ class KidneyDiseaseData:
             self.pot = pot
             self.hemo = hemo
             self.pcv = pcv
-            self.wbcc = wbcc
-            self.rbcc = rbcc
+            self.wc = wc
+            self.rc = rc
             self.htn = htn
             self.dm = dm
             self.cad = cad
@@ -51,8 +51,8 @@ class KidneyDiseaseData:
         try:
             input_data = {"age": [self.age], "bp": [self.bp], "sg": [self.sg], "al": [self.al], "su": [self.su],"rbc": [self.rbc],
             "pc": [self.pc],"pcc": [self.pcc],"ba": [self.ba],"bgr": [self.bgr],"bu": [self.bu],"sc": [self.sc], "sod": [self.sod],
-            "pot": [self.pot],"hemo": [self.hemo],"pcv": [self.pcv],"wbcc": [self.wbcc],"htn": [self.htn],"dm": [self.dm],"cad": [self.cad],
-            "appet": [self.appet],"pe": [self.pe],"ane": [self.ane]}
+            "pot": [self.pot],"hemo": [self.hemo],"pcv": [self.pcv],"wc": [self.wc], "rc": [self.rc],"htn": [self.htn],"dm": [self.dm],
+            "cad": [self.cad], "appet": [self.appet],"pe": [self.pe],"ane": [self.ane]}
             return input_data
         except Exception as e:
             raise kidneyDiseaseException(e, sys)
